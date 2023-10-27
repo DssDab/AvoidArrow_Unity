@@ -5,8 +5,6 @@ using UnityEngine;
 public class ObjectController : MonoBehaviour
 {
     GameObject Player;
-    
-    
     float downSpeed = 0.1f;
     float delta = 0.0f;
     public enum Obj { item, arrow}
@@ -22,7 +20,7 @@ public class ObjectController : MonoBehaviour
     void Update()
     {
         delta += Time.deltaTime;
-        if(delta >= 3.0f)
+        if(delta>=3.0)
         {
             delta = 0.0f;
             downSpeed += 0.1f;

@@ -10,7 +10,6 @@ public class ObjectSpawn : MonoBehaviour
     float delta = 0.0f;
     float span = 1.0f;
     float iTRT = 3.0f;
-    float arrT = 3.0f;
     void Start()
     {
         Player = GameObject.Find("player");
