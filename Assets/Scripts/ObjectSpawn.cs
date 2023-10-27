@@ -10,6 +10,7 @@ public class ObjectSpawn : MonoBehaviour
     float delta = 0.0f;
     float span = 1.0f;
     float iTRT = 3.0f;
+    float arrT = 3.0f;
     void Start()
     {
         Player = GameObject.Find("player");
@@ -26,6 +27,7 @@ public class ObjectSpawn : MonoBehaviour
 
         delta += Time.deltaTime;
         iTRT -= Time.deltaTime;
+       
         if (delta >= span)
         {
             
@@ -50,6 +52,7 @@ public class ObjectSpawn : MonoBehaviour
                 goArrow.transform.position = new Vector3(p2x, 7, 0);
 
             }
+           
         }
     }
 }
