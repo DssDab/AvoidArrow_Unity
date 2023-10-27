@@ -5,7 +5,12 @@ using UnityEngine;
 public class ObjectController : MonoBehaviour
 {
     GameObject Player;
+<<<<<<< HEAD
     public float downSpeed = -0.1f;
+=======
+    public float downSpeed = 0.1f;
+   
+>>>>>>> dd6e7ed0cf34fcee442df1d5f55c3aadf3b020f0
     public enum Obj { item, arrow}
     public Obj ObjType;
     
@@ -19,8 +24,13 @@ public class ObjectController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         transform.Translate(0, downSpeed, 0);
         Debug.Log(downSpeed);
+=======
+        
+        transform.Translate(0, -downSpeed, 0);
+>>>>>>> dd6e7ed0cf34fcee442df1d5f55c3aadf3b020f0
 
 
         if (this.transform.position.y < -5.0f)
