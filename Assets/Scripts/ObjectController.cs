@@ -5,10 +5,10 @@ using UnityEngine;
 public class ObjectController : MonoBehaviour
 {
     GameObject Player;
-    float downSpeed = 0.1f;
-    float delta = 0.0f;
+    public float downSpeed = -0.1f;
     public enum Obj { item, arrow}
     public Obj ObjType;
+    
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -19,13 +19,8 @@ public class ObjectController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        delta += Time.deltaTime;
-        if(delta>=3.0)
-        {
-            delta = 0.0f;
-            downSpeed += 0.1f;
-        }
-        transform.Translate(0, -downSpeed, 0);
+        transform.Translate(0, downSpeed, 0);
+        Debug.Log(downSpeed);
 
 
         if (this.transform.position.y < -5.0f)

@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     public int score = 0;
     public float Life = 10.0f;
     float hAxis;
-    public bool isLBtnDown = false;
-    public bool isRBtnDown = false;
+   [HideInInspector] public bool isLBtnDown = false;
+   [HideInInspector]public bool isRBtnDown = false;
     [Header("---GameUI---")]
     public GameObject Replay;
     public Text ScoreT;
@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("GameScene");
+        PlayerPrefs.DeleteAll();
+
     }
 
     public void onLeftDown()

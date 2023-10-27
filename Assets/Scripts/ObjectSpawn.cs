@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static ObjectController;
 
 public class ObjectSpawn : MonoBehaviour
 {
+    
     public GameObject[] Type;
     GameObject Player;
-
     float delta = 0.0f;
     float span = 1.0f;
-    float iTRT = 3.0f;
+    int ratio = 3;
+    float m_DownSpeed = -0.1f;
     void Start()
     {
         Player = GameObject.Find("player");
@@ -20,38 +23,45 @@ public class ObjectSpawn : MonoBehaviour
     {
         if (this.Player.GetComponent<PlayerController>().Life <= 0)
             return;
+        // --- 난이도 설정---
+        m_DownSpeed -= (Time.deltaTime * 0.005f);
 
-        if (span <= 0.3f)
-            span = 0.3f;
+        if (m_DownSpeed < -0.3f)
+            m_DownSpeed = -0.3f;
+
+        span -= (Time.deltaTime * 0.03f);
+
+        if (span <= 0.1f)
+            span = 0.1f;
+        // ---난이도 설정---
 
         delta += Time.deltaTime;
-        iTRT -= Time.deltaTime;
-       
+            
         if (delta >= span)
         {
-            
-            span -= 0.1f;
             delta = 0.0f;
+
             int rand = Random.Range(0, Type.Length);
-            if (Type[rand].GetComponent<ObjectController>().ObjType == ObjectController.Obj.item)
+            GameObject go = null;
+            int dice = Random.Range(1, 11);
+            if (dice <= ratio)
             {
-                if(iTRT<=0.0f)
+                if (Type[rand].GetComponent<ObjectController>().ObjType == Obj.item)
                 {
-                iTRT = 3.0f;
-                GameObject goItem = Instantiate(Type[rand]) as GameObject;
-                int p1x = Random.Range(-8, 9);
-                goItem.transform.position = new Vector3(p1x, 7, 0);
-                return;
+                     go = Instantiate(Type[rand]) as GameObject;
+                    go.GetComponent<ObjectController>().downSpeed = m_DownSpeed;
                 }
-            }
-            else
-            {
-                GameObject goArrow = Instantiate(Type[rand]) as GameObject;
-                int p2x = Random.Range(-8, 9);
-                goArrow.transform.position = new Vector3(p2x, 7, 0);
+                else
+                {
+                     go = Instantiate(Type[rand]) as GameObject;
+                     go.GetComponent<ObjectController>().downSpeed = m_DownSpeed;
+                }
+                int p1x = Random.Range(-8, 9);
+                go.transform.position = new Vector3(p1x, 7, 0);
+
 
             }
-           
         }
     }
 }
+
